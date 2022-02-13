@@ -8,10 +8,14 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pages.Calculator;
+import pages.SearchPage;
 
 public class googleTest1 {
 
     private static WebDriver driver;
+    private static SearchPage searchPage;
+    private static Calculator calculator;
 
     @BeforeAll
     public static void init (){
@@ -19,15 +23,27 @@ public class googleTest1 {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
+        searchPage = new SearchPage(driver);
+        calculator = new Calculator(driver);
     }
 
     @Test
     public void test1(){
-
         driver.get("http://google.com");
-        driver.findElement(By.cssSelector("input.gLFyf.gsfi")).sendKeys("калькулятор", Keys.ENTER);
-
-
+        searchPage.search("калькулятор");
+        calculator.leftsc.click();
+        calculator.one.click();
+        calculator.plus.click();
+        calculator.two.click();
+        calculator.rightsc.click();
+        calculator.multiplication.click();
+        calculator.three.click();
+        calculator.minus.click();
+        calculator.four.click();
+        calculator.zero.click();
+        calculator.division.click();
+        calculator.five.click();
+        calculator.equals.click();
     }
 
     @AfterAll
